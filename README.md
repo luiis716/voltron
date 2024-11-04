@@ -25,7 +25,7 @@ Para instalar o serviço Piper TTS, você pode utilizar a template do EasyPanel:
             "port": 5000
           }
         ],
-        "env": "FLASK_ENV=development",
+        "env": "FLASK_ENV=development \nAPI_KEY=123456789 \nDELETE_FILE_MINUTES=2",
         "mounts": [
           {
             "type": "volume",
@@ -46,6 +46,7 @@ Aqui está um exemplo de como você pode fazer uma requisição para gerar áudi
 ```bash
 curl -X POST http://localhost:5000/audio \
      -H "Content-Type: application/json" \
+     -H "x-api-key: sua_chave_aqui" \
      -d '{
            "texto": "Olá, este é um teste de geração de áudio.",
            "saida": "teste_audio",
@@ -57,7 +58,7 @@ curl -X POST http://localhost:5000/audio \
 ```
 
 ### Descrição do JSON
-
+- **x-api-key**: apikey setado na env do projeto
 - **texto**: O texto que será convertido em áudio.
 - **saida**: O nome do arquivo de saída (sem extensão).
 - **voz**: Voz escolhida (faber ou edresson).
